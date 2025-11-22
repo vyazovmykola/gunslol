@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAQLIV Profile</title>
+    <title>Chokos Profile</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         
-        .custom-cursor {
+        /* .custom-cursor {
             position: fixed;
             width: 40px;
             height: 40px;
@@ -22,12 +22,12 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-        }
+        } */
 
         
-        body:not(.touch-device) {
+        /* body:not(.touch-device) {
             cursor: none;
-        }
+        } */
 
         body {
             background-color: #000;
@@ -86,7 +86,7 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 20;
+            z-index: 60; /* raised above profile and links to prevent overlap clicks */
             background: rgba(0, 0, 0, 0.7);
             padding: 5px 10px;
             border-radius: 20px;
@@ -162,7 +162,7 @@
         }
 
         
-        .top-controls {
+        /* .top-controls {  Volume / transparency controls disabled
             position: fixed;
             bottom: calc(50% - 240px - 60px);
             left: 50%;
@@ -170,12 +170,30 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            z-index: 20;
+            z-index: 60;
             background: rgba(0, 0, 0, 0.7);
             padding: 8px 12px;
             border-radius: 20px;
             backdrop-filter: blur(5px);
+        } */
+
+        .mute-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 70;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            backdrop-filter: blur(4px);
+            transition: background 0.3s, transform 0.2s;
         }
+        .mute-btn:hover { background: rgba(0,0,0,0.8); transform: scale(1.05); }
 
         
         #profile-block {
@@ -261,7 +279,7 @@
         
         @font-face {
             font-family: 'Angel Wish';
-            src: url('assets/Angel_wish.ttf') format('truetype');
+            src: url('assets/Angel wish.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -844,7 +862,7 @@
 </head>
 <body class="home-theme" onload="initMedia()">
     
-    <div class="custom-cursor"></div>
+    <!-- <div class="custom-cursor"></div> -->
 
     
     <div id="start-screen">
@@ -870,7 +888,7 @@
         <div id="profile-block">
             <div class="profile-header">
                 <div class="profile-container">
-                    <img src="assets/profile.gif" alt="Profile" class="profile-picture">
+                    <img src="assets/profile_picture.jpg" alt="Profile" class="profile-picture">
                 </div>
                 <div class="profile-info">
                     <div class="name-and-badges">
@@ -879,40 +897,16 @@
                             <div class="badge-box-inner">
                                 <div class="badge-group">
                                     <div class="badge-container">
-                                        <img src="assets/staff.gif" alt="Staff" class="badge">
-                                        <span class="tooltip">Staff Member</span>
-                                    </div>
-                                    <div class="badge-container">
-                                        <img src="assets/owner.gif" alt="Owner" class="badge">
-                                        <span class="tooltip">Owner</span>
-                                    </div>
-                                    <div class="badge-container">
-                                        <img src="assets/partner.gif" alt="Partner" class="badge">
-                                        <span class="tooltip">Partner</span>
-                                    </div>
-                                    <div class="badge-container">
                                         <img src="assets/developer.png" alt="Developer" class="badge">
                                         <span class="tooltip">Developer</span>
                                     </div>
                                     <div class="badge-container">
-                                        <img src="assets/bug_bounty.gif" alt="Bug Bounty" class="badge">
-                                        <span class="tooltip">Bug Bounty</span>
-                                    </div>
-                                    <div class="badge-container">
-                                        <img src="assets/hated_guns.gif" alt="Hated by Guns.lol" class="badge">
-                                        <span class="tooltip">Hated by Guns.lol</span>
-                                    </div>
-                                    <div class="badge-container">
-                                        <img src="assets/hated_fakecrime.gif" alt="Hated by Fakecrime.bio" class="badge">
-                                        <span class="tooltip">Hated by Fakecrime.bio</span>
-                                    </div>
-                                    <div class="badge-container">
-                                        <img src="assets/verified.gif" alt="Verified" class="badge">
+                                        <img src="assets/verefide.png" alt="Verified" class="badge">
                                         <span class="tooltip">Verified</span>
                                     </div>
                                     <div class="badge-container">
-                                        <img src="assets/rule_maker.gif" alt="Rule Maker" class="badge">
-                                        <span class="tooltip">Rule Maker</span>
+                                        <img src="assets/premium.png" alt="Premium" class="badge">
+                                        <span class="tooltip">Premium</span>
                                     </div>
                                 </div>
                             </div>
@@ -927,18 +921,20 @@
             <div class="profile-footer">
 
                 <div class="social-links">
-                    <a href="https://discord.gg/motiongoats" target="_blank">
+                    <!-- <a href="https://discord.gg/" target="_blank">
                         <img src="assets/discord.png" alt="Discord" class="social-icon">
-                    </a>
-                    <a href="https://github.com/JAQLIV" target="_blank">
+                    </a> -->
+                    <a href="https://github.com/vyazovmykola" target="_blank">
                         <img src="assets/github.png" alt="GitHub" class="social-icon">
                     </a>
-                    <a href="https://www.youtube.com/@jaqliv" target="_blank">
+                    <!-- YouTube and TikTok links hidden per request
+                    <a href="https://www.youtube.com/" target="_blank">
                         <img src="assets/youtube.png" alt="YouTube" class="social-icon">
                     </a>
-                    <a href="https://www.tiktok.com/@jaqliv" target="_blank">
+                    <a href="https://www.tiktok.com/ target="_blank">
                         <img src="assets/tiktok.png" alt="TikTok" class="social-icon">
                     </a>
+                    -->
                 </div>
 
 
@@ -960,7 +956,7 @@
                 <div class="skill-name">
                     <img src="assets/python.png" alt="Python" class="skill-icon">
                     <span>Python</span>
-                    <span>87%</span>
+                    <span id="python-percent">87%</span>
                 </div>
                 <div class="skill-bar-container">
                     <div id="python-bar" class="skill-bar"></div>
@@ -970,7 +966,7 @@
                 <div class="skill-name">
                     <img src="assets/cpp.png" alt="C++" class="skill-icon">
                     <span>C++</span>
-                    <span>75%</span>
+                    <span id="cpp-percent">75%</span>
                 </div>
                 <div class="skill-bar-container">
                     <div id="cpp-bar" class="skill-bar"></div>
@@ -980,7 +976,7 @@
                 <div class="skill-name">
                     <img src="assets/csharp.png" alt="C#" class="skill-icon">
                     <span>C#</span>
-                    <span>80%</span>
+                    <span id="csharp-percent">80%</span>
                 </div>
                 <div class="skill-bar-container">
                     <div id="csharp-bar" class="skill-bar"></div>
@@ -989,53 +985,21 @@
         </div>
 
 
-        <div id="results-button-container" class="hidden">
-            <button id="results-theme">View Results</button>
+        <!-- Results button disabled per user request -->
+        <div id="results-button-container" class="hidden" style="display:none">
+            <button id="results-theme" disabled>View Results</button>
             <div id="results-hint" class="hidden">Click again to return to profile</div>
         </div>
 
 
-        <div class="controls">
-            <div id="home-theme" class="theme-button">1</div>
-            <div id="hacker-theme" class="theme-button">2</div>
-            <div id="rain-theme" class="theme-button">3</div>
-            <div id="anime-theme" class="theme-button">4</div>
-            <div id="car-theme" class="theme-button">5</div>
-        </div>
 
-
-        <div class="top-controls">
-            <div class="volume-control">
-                <svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
-                </svg>
-                <input id="volume-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.3">
-            </div>
-            <div class="transparency-control">
-                <svg class="transparency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                </svg>
-                <input id="transparency-slider" class="slider" type="range" min="0" max="1" step="0.01" value="0.7">
-            </div>
-        </div>
+        <!-- Volume / transparency controls removed -->
+        <button id="mute-btn" class="mute-btn" aria-label="Toggle Mute">🔊</button>
     </div>
 
 
     <audio id="background-music" loop>
         <source src="assets/background_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="hacker-music" loop muted>
-        <source src="assets/hacker_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="rain-music" loop muted>
-        <source src="assets/rain_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="anime-music" loop muted>
-        <source src="assets/anime_music.mp3" type="audio/mp3">
-    </audio>
-    <audio id="car-music" loop muted>
-        <source src="assets/car_music.mp3" type="audio/mp3">
     </audio>
 
 
