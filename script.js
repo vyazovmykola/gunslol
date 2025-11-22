@@ -94,6 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundMusic.play().catch(err => {
       console.error("Failed to play music after start screen click:", err);
     });
+    backgroundVideo.play().catch(err => {
+      console.error("Failed to play video after start screen click:", err);
+    });
     profileBlock.classList.remove('hidden');
     // resultsButtonContainer left hidden (disabled feature)
     gsap.fromTo(profileBlock,
@@ -114,6 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundVideo.muted = false;
     backgroundMusic.play().catch(err => {
       console.error("Failed to play music after start screen touch:", err);
+    });
+    backgroundVideo.play().catch(err => {
+      console.error("Failed to play video after start screen touch:", err);
     });
     profileBlock.classList.remove('hidden');
     // resultsButtonContainer left hidden (disabled feature)
