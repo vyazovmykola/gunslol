@@ -5,9 +5,7 @@ function initMedia() {
   backgroundMusic.volume = 0.3;
   backgroundVideo.volume = 0.3;
   backgroundVideo.muted = true; // will be unmuted after user interaction
-  backgroundVideo.play().catch(err => {
-    console.warn('Autoplay video failed (will retry after interaction):', err);
-  });
+  backgroundVideo.play().catch(() => {});
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -96,14 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundMusic.play().catch(err => {
       console.error("Failed to play music after start screen click:", err);
     });
-    backgroundVideo.play().catch(err => {
-      console.error("Failed to play video after start screen click:", err);
-    });
-    console.log('[Video Debug] state after click:', {
-      readyState: backgroundVideo.readyState,
-      networkState: backgroundVideo.networkState,
-      error: backgroundVideo.error
-    });
     profileBlock.classList.remove('hidden');
     // resultsButtonContainer left hidden (disabled feature)
     gsap.fromTo(profileBlock,
@@ -124,14 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundVideo.muted = false;
     backgroundMusic.play().catch(err => {
       console.error("Failed to play music after start screen touch:", err);
-    });
-    backgroundVideo.play().catch(err => {
-      console.error("Failed to play video after start screen touch:", err);
-    });
-    console.log('[Video Debug] state after touchstart:', {
-      readyState: backgroundVideo.readyState,
-      networkState: backgroundVideo.networkState,
-      error: backgroundVideo.error
     });
     profileBlock.classList.remove('hidden');
     // resultsButtonContainer left hidden (disabled feature)
@@ -244,33 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   refreshMuteBtn();
-
-  // Video diagnostics
-  if (backgroundVideo) {
-    backgroundVideo.addEventListener('error', () => {
-      console.error('[Video Debug] error event:', backgroundVideo.error);
-    });
-    backgroundVideo.addEventListener('loadeddata', () => {
-      console.log('[Video Debug] loadeddata: first frame available');
-    });
-    backgroundVideo.addEventListener('canplay', () => {
-      console.log('[Video Debug] canplay fired');
-    });
-    backgroundVideo.addEventListener('playing', () => {
-      console.log('[Video Debug] playing fired');
-      if (backgroundVideo.getAttribute('poster')) {
-        // Remove poster so video frames show, in case poster was covering.
-        backgroundVideo.removeAttribute('poster');
-        console.log('[Video Debug] poster attribute removed');
-      }
-    });
-    backgroundVideo.addEventListener('stalled', () => {
-      console.warn('[Video Debug] stalled event');
-    });
-    backgroundVideo.addEventListener('waiting', () => {
-      console.warn('[Video Debug] waiting for more data');
-    });
-  }
  
   function handleTilt(e, element) {
     const rect = element.getBoundingClientRect();
