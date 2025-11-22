@@ -258,6 +258,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     backgroundVideo.addEventListener('playing', () => {
       console.log('[Video Debug] playing fired');
+      if (backgroundVideo.getAttribute('poster')) {
+        // Remove poster so video frames show, in case poster was covering.
+        backgroundVideo.removeAttribute('poster');
+        console.log('[Video Debug] poster attribute removed');
+      }
     });
     backgroundVideo.addEventListener('stalled', () => {
       console.warn('[Video Debug] stalled event');
